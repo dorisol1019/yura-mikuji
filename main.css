@@ -86,6 +86,23 @@ footer {
   }
 }
 
+.result {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+}
+
 .player video {
-  width: 100vw;
+  width: 75vw;
+}
+
+#omikuji_serif {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem);
 }
