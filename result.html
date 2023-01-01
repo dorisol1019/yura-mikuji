@@ -15,30 +15,32 @@
         console.error("number: " + number);
       }
 
-      class Movie {
-        constructor(filePath, serif, source) {
-          this.filePath = filePath;
+      class Omikuji {
+        constructor(rank, filePath, serif, source) {
+          this.rank = rank;
+          this.moviePath = filePath;
           this.serif = serif;
-          this.source = source;
+          this.movieSource = source;
         }
       }
 
-      class Source {
+      class MovieSource {
         constructor(title, url) {
           this.title = title;
           this.url = url;
         }
       }
 
-      const src1 = new Source(
+      const src1 = new MovieSource(
         "【手元配信】あけおめ！新年にボクに挨拶しろ～！&書初めする！重大告知もあるよ！【#新人vtuber /灯火ゆら】",
         "https://www.youtube.com/watch?v=N5bhJ5CPL0c"
       );
 
-      const MovieMap = new Map([
+      const OmikujiMap = new Map([
         [
           1,
-          new Movie(
+          new Omikuji(
+            "大吉",
             "asset/daikichi_01.mp4",
             "「ん～　大吉！　おめ～！」",
             src1
@@ -46,7 +48,8 @@
         ],
         [
           2,
-          new Movie(
+          new Omikuji(
+            "大吉",
             "asset/daikichi_02.mp4",
             "「大吉！　ﾊｲｵﾒﾃﾞﾄｰ　大吉です」",
             src1
@@ -54,7 +57,8 @@
         ],
         [
           3,
-          new Movie(
+          new Omikuji(
+            "大吉",
             "asset/daikichi_03.mp4",
             "「ん～　大吉！　おめ、大吉～」",
             src1
@@ -62,7 +66,8 @@
         ],
         [
           4,
-          new Movie(
+          new Omikuji(
+            "大吉",
             "asset/daikichi_04.mp4",
             "「ん～　大吉！　おめでとう～」",
             src1
@@ -74,10 +79,10 @@
         const movie = document.getElementById("omikuji_movie");
         const serif = document.getElementById("omikuji_serif");
         const source = document.getElementById("source");
-        movie.src = MovieMap.get(number).filePath;
-        serif.textContent = MovieMap.get(number).serif;
-        source.textContent = MovieMap.get(number).source.title;
-        source.href = MovieMap.get(number).source.url;
+        movie.src = OmikujiMap.get(number).moviePath;
+        serif.textContent = OmikujiMap.get(number).serif;
+        source.textContent = OmikujiMap.get(number).movieSource.title;
+        source.href = OmikujiMap.get(number).movieSource.url;
       });
     </script>
   </head>
