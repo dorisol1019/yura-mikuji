@@ -9,8 +9,6 @@ window.onload = async ()=>{
 	omikuji.addEventListener("animationend",async(e)=>{
 		// 最後のアニメーションが終わったときだけ発火する
 		if (e.animationName === "omikuji-down" ){
-			// 気持ち0.5秒待機
-			await new Promise(resolve => setTimeout(resolve, 500));
 			const number = mt.nextInt(1,4)
 			console.log("number:"+number)
 
