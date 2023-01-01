@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>ゆらみくじ 結果</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const number = parseInt(params.get("no"));
+      // nanか範囲外のときは最初のページに戻る
+      if (isNaN(number) || !(1 <= number && number <= 4)) {
+        window.location.href = "index.html";
+        console.error("number: " + number);
+      }
+
+      class Movie {
+        constructor(filePath, serif, source) {
+          this.filePath = filePath;
+          this.serif = serif;
+          this.source = source;
+        }
+      }
+
+      class Source {
+        constructor(title, url) {
+          this.title = title;
+          this.url = url;
+        }
+      }
+
+      const src1 = new Source(
+        "【手元配信】あけおめ！新年にボクに挨拶しろ～！&書初めする！重大告知もあるよ！【#新人vtuber /灯火ゆら】",
+        "https://www.youtube.com/watch?v=N5bhJ5CPL0c"
+      );
+
+      const MovieMap = new Map([
+        [
+          1,
+          new Movie(
+            "asset/daikichi_01.mp4",
+            "「ん～　大吉！　おめ～！」",
+            src1
+          ),
+        ],
+        [
+          2,
+          new Movie(
+            "asset/daikichi_02.mp4",
+            "「大吉！　ﾊｲｵﾒﾃﾞﾄｰ　大吉です」",
+            src1
+          ),
+        ],
+        [
+          3,
+          new Movie(
+            "asset/daikichi_03.mp4",
+            "「ん～　大吉！　おめ、大吉～」",
+            src1
+          ),
+        ],
+        [
+          4,
+          new Movie(
+            "asset/daikichi_04.mp4",
+            "「ん～　大吉！　おめでとう～」",
+            src1
+          ),
+        ],
+      ]);
+
+      window.addEventListener("load", () => {
+        const movie = document.getElementById("omikuji_movie");
+        const serif = document.getElementById("omikuji_serif");
+        const source = document.getElementById("source");
+        movie.src = MovieMap.get(number).filePath;
+        serif.textContent = MovieMap.get(number).serif;
+        source.textContent = MovieMap.get(number).source.title;
+        source.href = MovieMap.get(number).source.url;
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>ゆらみくじ 結果</h1>
+      <h2 id="omikuji_serif"></h2>
+      <div class="player">
+        <video id="omikuji_movie" src="" controls autoplay>
+          <p>動画を再生するにはvideoタグをサポートしたブラウザが必要です。</p>
+        </video>
+      </div>
+      <p>
+        引用元:
+        <a target="_blank" id="source"></a>
+      </p>
+    </main>
+    <footer>
+      (c) 2023 dorisol1019 <br />
+      お問い合わせは
+      <a target="_blank" href="https://twitter.com/dorisol1019"
+        >https://twitter.com/dorisol1019</a
+      >
+      まで
+    </footer>
+  </body>
+</html>
